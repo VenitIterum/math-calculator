@@ -59,7 +59,7 @@ namespace math_calculator
                 {
                     case "1":
                         Console.WriteLine("...Start algorizm...\n");
-                        //StandartCalculator.AlgorithmStandartCalculator();
+                        StandartCalculator.AlgorithmStandartCalculator();
                         break;
                     case "0":
                         IsExit = true;
