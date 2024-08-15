@@ -12,7 +12,14 @@ namespace math_calculator
 		//	Devide
 		//}
 
-		public static void AlgorithmStandartCalculator()
+		//private static float StartCalculations()
+		//{
+		//	float result = 0.0f;
+
+		//	return result;
+		//}
+
+        public static void AlgorithmStandartCalculator()
 		{
 			bool	IsExit = true,
 					IsHaveResult = true;
@@ -24,10 +31,32 @@ namespace math_calculator
 					result = 0.0f;
 
 			string	sign = null,
-					yesOrNo = null;
+					yesOrNo = null,
+					mathProblem = null;
 
+			List<string>	arrayOfSignElements		= new List<string>();
+			List<float>		arrayOfNumberElements	= new List<float>();
 
-			Console.Write(countOfSteps + " step)\nx = ");
+            Console.Write(countOfSteps + " step)\n");
+            mathProblem = Console.ReadLine();
+
+			foreach(string element in mathProblem.Split(' '))
+			{
+                if (element == "+" || element == "-" || element == "*" || element == "/")
+                {
+					arrayOfSignElements.Add(element);
+                }
+                else
+                {
+					arrayOfNumberElements.Add(float.Parse(element));//if i want do the sqrt or factorial, then float.parse will do after this string
+                }
+            }
+
+			//result = StartCalculations();
+			return;
+
+            //Old version
+            Console.Write(countOfSteps + " step)\nx = ");
 			try
 			{
 				xValue = float.Parse(Console.ReadLine());
@@ -59,7 +88,6 @@ namespace math_calculator
 					Console.ReadKey();
 					return;
 				}
-
 
 				//Add round for result value! (4.2 - 6.4 = -2.20001)
 				switch (sign)

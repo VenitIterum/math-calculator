@@ -58,7 +58,7 @@ namespace math_calculator
                 switch (numOfMenu)
                 {
                     case "1":
-                        Console.WriteLine("Enter values:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                        Console.WriteLine("Enter a math problem:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                         StandartCalculator.AlgorithmStandartCalculator();
                         break;
                     case "0":
