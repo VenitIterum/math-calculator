@@ -22,13 +22,15 @@ namespace math_calculator
         public static void AlgorithmStandartCalculator()
 		{
 			bool	IsExit = true,
-					IsHaveResult = true;
+					IsHaveResult = true,
+					IsHaveSpecialSignl = true; //if we have * or /
 
 			int		countOfSteps = 1;
 
-			float	xValue = 0.0f,
-					yValue = 0.0f,
-					result = 0.0f;
+			float	xValue = .0f,
+					yValue = .0f,
+					result = .0f,
+					tempResult = 1.0f;
 
 			string	sign = null,
 					yesOrNo = null,
@@ -36,11 +38,13 @@ namespace math_calculator
 
 			List<string>	arrayOfSignElements		= new List<string>();
 			List<float>		arrayOfNumberElements	= new List<float>();
+			List<string>	arrayOfSignElements2	= new List<string>();
+			List<float>		arrayOfNumberElements2	= new List<float>();
 
             Console.Write(countOfSteps + " step)\n");
-            mathProblem = Console.ReadLine();
+            mathProblem = Console.ReadLine();           //And i can remember string
 
-			foreach(string element in mathProblem.Split(' '))
+            foreach (string element in mathProblem.Split(' '))
 			{
                 if (element == "+" || element == "-" || element == "*" || element == "/")
                 {
@@ -52,6 +56,75 @@ namespace math_calculator
                 }
             }
 
+			foreach (string element in arrayOfSignElements)
+			{
+				if (element == "*" || element == "/")
+				{
+                    IsHaveSpecialSignl = true;
+					break;
+                }
+
+			}
+
+			if (IsHaveSpecialSignl)
+			{
+				for (int i = 0; i < arrayOfSignElements.Count; i++)
+				{
+					if (arrayOfSignElements[i] == "*" || arrayOfSignElements[i] == "/")
+					{
+						if (i != 0)
+						{
+							if (arrayOfSignElements[i - 1] != "*" || arrayOfSignElements[i - 1] != "/")
+							{
+								tempResult = arrayOfNumberElements[i] * arrayOfNumberElements[i + 1];
+							}
+						}
+						else
+						{
+							if (arrayOfSignElements[i] == "*")
+							{
+								tempResult = arrayOfNumberElements[i] * arrayOfNumberElements[i + 1];
+							}
+							else if (arrayOfSignElements[i] == "/")
+							{
+								if (arrayOfNumberElements[i + 1] != .0f)
+								{
+									tempResult = arrayOfNumberElements[i] / arrayOfNumberElements[i + 1];
+								}
+								else
+								{
+									Console.Clear();
+									Console.WriteLine("You can't divide by zero!");
+									Console.ReadKey();
+									break;
+								}
+							}
+						}
+					}
+					//else if (arrayOfSignElements[i] == "+" || arrayOfSignElements[i] == "-")
+					//{
+						//Лять, диллема! Наверное лучше сразу проходиться по списку и проверять, а есть ли там знаки умножить и разделить. Ибо если есть, то мы идём по сложному алгоритму, а если нет?
+						//Нахрена нам идти по сложному, есил нету у нас в строке знаков умнодить и разделить. Значит можно замутить отдельный метод, где будет выполняться просто алгоритм
+
+						//arrayOfNumberElements2.Add(arrayOfNumberElements[i]);
+						//summa and minos
+					//}
+					else
+					{
+						Console.Clear();
+						Console.WriteLine();
+						Console.ReadKey();
+						break;
+					}
+				}
+			}
+			else
+			{
+				result = PlusAndMinosOperation(arrayOfSignElements, arrayOfNumberElements);
+            }
+
+			Console.WriteLine("Result: " + result);
+			Console.ReadKey();
 			//result = StartCalculations();
 			return;
 
@@ -147,6 +220,28 @@ namespace math_calculator
 				}
 			}
         }
+
+		public static float PlusAndMinosOperation(List<string> arrayOfSignElements, List<float> arrayOfNumberElements)
+		{
+			float result = arrayOfNumberElements[0];
+
+			for (int i = 0; i< arrayOfSignElements.Count; i++)
+			{
+				switch (arrayOfSignElements[i])
+				{
+					case "+":
+						result = result + arrayOfNumberElements[i + 1];
+                        break;
+					case "-":
+						result = result - arrayOfNumberElements[i + 1];
+						break;
+					default:
+						break;
+				}
+			}
+
+			return result;
+		}
     }
 }
 
