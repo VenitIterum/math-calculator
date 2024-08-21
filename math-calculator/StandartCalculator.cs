@@ -12,18 +12,11 @@ namespace math_calculator
 		//	Devide
 		//}
 
-		//private static float StartCalculations()
-		//{
-		//	float result = 0.0f;
-
-		//	return result;
-		//}
-
         public static void AlgorithmStandartCalculator()
 		{
 			bool	IsExit = true,
 					IsHaveResult = true,
-					IsHaveSpecialSignl = true; //if we have * or /
+					IsHaveSpecialSign = false; //if we have * or /
 
 			int		countOfSteps = 1;
 
@@ -38,9 +31,9 @@ namespace math_calculator
 
 			List<string>	arrayOfSignElements		= new List<string>();
 			List<float>		arrayOfNumberElements	= new List<float>();
-			List<string>	arrayOfSignElements2	= new List<string>();
-			List<float>		arrayOfNumberElements2	= new List<float>();
-
+			List<string>	newArrayOfSignElements	= new List<string>();
+			List<float>		newArrayOfNumberElements	= new List<float>();
+			
             Console.Write(countOfSteps + " step)\n");
             mathProblem = Console.ReadLine();           //And i can remember string
 
@@ -49,6 +42,7 @@ namespace math_calculator
                 if (element == "+" || element == "-" || element == "*" || element == "/")
                 {
 					arrayOfSignElements.Add(element);
+					//---> HERE <---//
                 }
                 else
                 {
@@ -58,15 +52,14 @@ namespace math_calculator
 
 			foreach (string element in arrayOfSignElements)
 			{
-				if (element == "*" || element == "/")
+				if (element == "*" || element == "/")//maybe move this condition in up (---> HERE <---), only without break//
 				{
-                    IsHaveSpecialSignl = true;
+                    IsHaveSpecialSign = true;
 					break;
                 }
-
 			}
 
-			if (IsHaveSpecialSignl)
+			if (IsHaveSpecialSign)
 			{
 				for (int i = 0; i < arrayOfSignElements.Count; i++)
 				{
@@ -74,50 +67,98 @@ namespace math_calculator
 					{
 						if (i != 0)
 						{
-							if (arrayOfSignElements[i - 1] != "*" || arrayOfSignElements[i - 1] != "/")
+							if (arrayOfSignElements[i - 1] == "*" || arrayOfSignElements[i - 1] == "/")
 							{
-								tempResult = arrayOfNumberElements[i] * arrayOfNumberElements[i + 1];
+                                switch (arrayOfSignElements[i])
+                                {
+                                    case "*":
+                                        newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] = newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] * arrayOfNumberElements[i + 1];
+                                        break;
+                                    case "/":
+                                        if (arrayOfNumberElements[i + 1] != .0f)
+                                        {
+                                            newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] = newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] / arrayOfNumberElements[i + 1];
+                                        }
+                                        else
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("You can't divide by zero!");
+                                            Console.ReadKey();
+                                            //Come up with the end for divide by zero
+                                        }
+                                        break;
+                                }
+                            }
+							else
+							{
+                                switch (arrayOfSignElements[i])
+                                {
+                                    case "*":
+                                        newArrayOfNumberElements.Add(arrayOfNumberElements[i] * arrayOfNumberElements[i + 1]);
+                                        break;
+                                    case "/":
+                                        if (arrayOfNumberElements[i + 1] != .0f)
+                                        {
+                                            newArrayOfNumberElements.Add(arrayOfNumberElements[i] / arrayOfNumberElements[i + 1]);
+                                        }
+                                        else
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("You can't divide by zero!");
+                                            Console.ReadKey();
+                                            //Come up with the end for divide by zero
+                                        }
+                                        break;
+                                }
+                            }
+						}
+						else
+						{
+							switch (arrayOfSignElements[i])
+							{
+								case "*":
+									newArrayOfNumberElements.Add(arrayOfNumberElements[i] * arrayOfNumberElements[i + 1]);
+									break;
+								case "/":
+									if (arrayOfNumberElements[i + 1] != .0f)
+									{
+										newArrayOfNumberElements.Add(arrayOfNumberElements[i] / arrayOfNumberElements[i + 1]);
+									}
+									else
+									{
+										Console.Clear();
+										Console.WriteLine("You can't divide by zero!");
+										Console.ReadKey();
+										//Come up with the end for divide by zero
+									}
+									break;
+							}
+						}
+                    }
+                    else
+					{
+						newArrayOfSignElements.Add(arrayOfSignElements[i]);
+
+						if (i != 0)
+						{
+							if (arrayOfSignElements[i - 1] != "*" && arrayOfSignElements[i - 1] != "/")
+							{
+								newArrayOfNumberElements.Add(arrayOfNumberElements[i]);
 							}
 						}
 						else
 						{
-							if (arrayOfSignElements[i] == "*")
-							{
-								tempResult = arrayOfNumberElements[i] * arrayOfNumberElements[i + 1];
-							}
-							else if (arrayOfSignElements[i] == "/")
-							{
-								if (arrayOfNumberElements[i + 1] != .0f)
-								{
-									tempResult = arrayOfNumberElements[i] / arrayOfNumberElements[i + 1];
-								}
-								else
-								{
-									Console.Clear();
-									Console.WriteLine("You can't divide by zero!");
-									Console.ReadKey();
-									break;
-								}
-							}
-						}
-					}
-					//else if (arrayOfSignElements[i] == "+" || arrayOfSignElements[i] == "-")
-					//{
-						//Лять, диллема! Наверное лучше сразу проходиться по списку и проверять, а есть ли там знаки умножить и разделить. Ибо если есть, то мы идём по сложному алгоритму, а если нет?
-						//Нахрена нам идти по сложному, есил нету у нас в строке знаков умнодить и разделить. Значит можно замутить отдельный метод, где будет выполняться просто алгоритм
-
-						//arrayOfNumberElements2.Add(arrayOfNumberElements[i]);
-						//summa and minos
-					//}
-					else
-					{
-						Console.Clear();
-						Console.WriteLine();
-						Console.ReadKey();
-						break;
-					}
+                            newArrayOfNumberElements.Add(arrayOfNumberElements[i]);
+                        }
+                    }
 				}
-			}
+
+				if (arrayOfSignElements[arrayOfSignElements.Count - 1] != "*" && arrayOfSignElements[arrayOfSignElements.Count - 1] != "/")
+				{
+					newArrayOfNumberElements.Add(arrayOfNumberElements[arrayOfNumberElements.Count - 1]);//add last element
+				}
+				result = PlusAndMinosOperation(newArrayOfSignElements, newArrayOfNumberElements);
+            }
 			else
 			{
 				result = PlusAndMinosOperation(arrayOfSignElements, arrayOfNumberElements);
@@ -125,7 +166,6 @@ namespace math_calculator
 
 			Console.WriteLine("Result: " + result);
 			Console.ReadKey();
-			//result = StartCalculations();
 			return;
 
             //Old version
@@ -225,7 +265,7 @@ namespace math_calculator
 		{
 			float result = arrayOfNumberElements[0];
 
-			for (int i = 0; i< arrayOfSignElements.Count; i++)
+			for (int i = 0; i < arrayOfSignElements.Count; i++)
 			{
 				switch (arrayOfSignElements[i])
 				{
