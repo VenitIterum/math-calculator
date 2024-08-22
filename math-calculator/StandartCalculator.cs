@@ -4,15 +4,9 @@ namespace math_calculator
 {
 	public class StandartCalculator
 	{
-		//private enum Sign
-		//{
-		//	Plus,
-		//	Minous,
-		//	Multiply,
-		//	Devide
-		//}
+		//[Flags]
 
-        public static void AlgorithmStandartCalculator()
+		public static void AlgorithmStandartCalculator()
 		{
 			bool	IsExit = true,
 					IsHaveResult = true,
@@ -46,6 +40,29 @@ namespace math_calculator
                 }
                 else
                 {
+					//if (element.IndexOf("sqrt") == 0)
+					//{
+						//Console.WriteLine(strBufer);
+						//Console.ReadKey();
+					//}
+
+					//Lazy ass! Rewrite this.
+					if (element.LastIndexOf("!") > 0)
+					{
+						string strBufer = element;
+                         strBufer = element.Substring(0, element.Length - 1);
+
+                        float bufer = 1;
+
+						for (float i = 1; i < float.Parse(strBufer) + 1; i++)
+						{
+							bufer = bufer * i;
+						}
+
+						arrayOfNumberElements.Add(bufer);
+						continue;
+					}
+
 					arrayOfNumberElements.Add(float.Parse(element));//if i want do the sqrt or factorial, then float.parse will do after this string
                 }
             }
