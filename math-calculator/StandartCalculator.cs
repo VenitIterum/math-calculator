@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace math_calculator
+namespace MathStanadrtCalculator
 {
 	public class StandartCalculator
 	{
@@ -300,5 +300,5 @@ namespace math_calculator
 			return result;
 		}
     }
-}
+  }
 

@@ -1,6 +1,7 @@
 ﻿using System;
-
-namespace math_calculator
+using MathStanadrtCalculator;
+    
+namespace MathCalculator
 {
     public class Program
     {
