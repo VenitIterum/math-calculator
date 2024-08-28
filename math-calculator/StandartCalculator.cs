@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MathStanadrtCalculator
+﻿namespace MathStanadrtCalculator
 {
 	public class StandartCalculator
 	{
@@ -278,7 +276,7 @@ namespace MathStanadrtCalculator
 			}
         }
 
-		public static float PlusAndMinosOperation(List<string> arrayOfSignElements, List<float> arrayOfNumberElements)
+		private static float PlusAndMinosOperation(List<string> arrayOfSignElements, List<float> arrayOfNumberElements)
 		{
 			float result = arrayOfNumberElements[0];
 
