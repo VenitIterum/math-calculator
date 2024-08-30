@@ -5,9 +5,9 @@ using DataStructureAndAlgorithms;
 
 internal class Program
 {
-    const int delayBeforeExit = 800;
+    public const int delayBeforeExit = 800;
 
-    private static void MenuMainMathCalculator()
+    private void MenuMainMathCalculator()
     {
         bool IsExit = false;
         var numOfMenu = "0";
@@ -47,8 +47,10 @@ internal class Program
         Thread.Sleep(delayBeforeExit);
     }
 
-    private static void MenuFirstStandartCalculator()
+    private void MenuFirstStandartCalculator()
     {
+        StandartCalculator standartCalculator = new StandartCalculator();
+
         bool IsExit = false;
         var numOfMenu = "0";
 
@@ -63,7 +65,7 @@ internal class Program
             {
                 case "1":
                     Console.WriteLine("Enter a math problem:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    StandartCalculator.AlgorithmStandartCalculator();
+                    standartCalculator.AlgorithmStandartCalculator();
                     break;
                 case "0":
                     IsExit = true;
@@ -76,8 +78,10 @@ internal class Program
         }
     }
 
-    private static void MenuSecondDataStructureAndAlgorithms()
+    private void MenuSecondDataStructureAndAlgorithms()
     {
+        DataStructureAndAlgorithmsClass dataStructureAndAlgorithmsClass = new DataStructureAndAlgorithmsClass();
+
         bool IsExit = false;
         var numOfMenu = "0";
 
@@ -92,7 +96,7 @@ internal class Program
             {
                 case "1":
                     //Console.WriteLine("Enter a math problem:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    DataStructureAndAlgorithmsClass.InternalMethod();
+                    dataStructureAndAlgorithmsClass.InternalMethod();
                     break;
                 case "0":
                     IsExit = true;
@@ -108,7 +112,8 @@ internal class Program
     //I don't undestand. WHY the main method of c# procject must be static?
     private static void Main(string[] args)
     {
-        MenuMainMathCalculator();
+        Program program = new Program();
+        program.MenuMainMathCalculator();
     }
 }
 

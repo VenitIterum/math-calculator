@@ -4,7 +4,7 @@
 	{
 		//[Flags]
 
-		public static void AlgorithmStandartCalculator()
+		public void AlgorithmStandartCalculator()
 		{
 			bool	IsExit = true,
 					IsHaveResult = true,
@@ -276,7 +276,7 @@
 			}
         }
 
-		private static float PlusAndMinosOperation(List<string> arrayOfSignElements, List<float> arrayOfNumberElements)
+		private float PlusAndMinosOperation(List<string> arrayOfSignElements, List<float> arrayOfNumberElements)
 		{
 			float result = arrayOfNumberElements[0];
 
