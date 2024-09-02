@@ -1,7 +1,4 @@
 ﻿using System;
-using MathStanadrtCalculator;
-using DataStructureAndAlgorithms;
-
 
 internal class Program
 {
