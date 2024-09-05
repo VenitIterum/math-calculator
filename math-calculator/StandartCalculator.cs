@@ -1,4 +1,6 @@
-﻿public class StandartCalculator
+﻿using System;
+
+public class StandartCalculator
 {
 	//[Flags]
 
@@ -10,16 +12,20 @@
 
 		int		countOfSteps = 1;
 
-		float	xValue = .0f,
+		float xValue = .0f,
 				yValue = .0f,
 				result = .0f,
-				tempResult = 1.0f;
+				tempResult = 1.0f,
+				bufer = 1;
 
-		string	sign = null,
+
+        string	sign = null,
 				yesOrNo = null,
-				mathProblem = null;
+				mathProblem = null,
+				strBufer = null;
 
-		List<string>	arrayOfSignElements		= new List<string>();
+
+        List<string>	arrayOfSignElements		= new List<string>();
 		List<float>		arrayOfNumberElements	= new List<float>();
 		List<string>	newArrayOfSignElements	= new List<string>();
 		List<float>		newArrayOfNumberElements	= new List<float>();
@@ -37,19 +43,37 @@
             }
             else
             {
-				//if (element.IndexOf("sqrt") == 0)
-				//{
-					//Console.WriteLine(strBufer);
-					//Console.ReadKey();
-				//}
+				if (element.IndexOf("sqrt") == 0)
+				{
+                    strBufer = element.Substring(4);
+
+                    for (float i = 1; i < float.Parse(strBufer) + 1; i++)
+					{
+						if ((i * i) <= float.Parse(strBufer))
+						{
+                            if ((i * i) == float.Parse(strBufer))
+							{
+                                arrayOfNumberElements.Add(i);
+                                break;
+							}
+                        }
+						else
+						{
+							Console.Clear();
+							Console.WriteLine("The number has no root!");
+							Console.ReadKey();
+							return;
+						}
+					}
+                    continue;
+                }
 
 				//Lazy ass! Rewrite this.
 				if (element.LastIndexOf("!") > 0)
 				{
-					string strBufer = element;
-                        strBufer = element.Substring(0, element.Length - 1);
+                    strBufer = element.Substring(0, element.Length - 1);
 
-                    float bufer = 1;
+                    bufer = 1;
 
 					for (float i = 1; i < float.Parse(strBufer) + 1; i++)
 					{
