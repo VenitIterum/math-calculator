@@ -25,8 +25,9 @@
 		List<float>		newArrayOfNumberElements	= new List<float>();
 			
         Console.Write(countOfSteps + " step)\n");
-        mathProblem = Console.ReadLine();           //And i can remember string
+        mathProblem = Console.ReadLine();           //And here i can remember string or hust output this string.
 
+		//At this loop u must do try...catch construction.
         foreach (string element in mathProblem.Split(' '))
 		{
             if (element == "+" || element == "-" || element == "*" || element == "/")
