@@ -47,6 +47,7 @@ internal class Program
     private void MenuFirstStandartCalculator()
     {
         StandartCalculator standartCalculator = new StandartCalculator();
+        RecordingAndOutputHistory recordingAndOutputHistory = new RecordingAndOutputHistory();
 
         bool IsExit = false;
         var numOfMenu = "0";
@@ -54,7 +55,7 @@ internal class Program
         while (!IsExit)
         {
             Console.Clear();
-            Console.Write("STANDART CALCULATOR\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\nChoose:\n1) Enter values\n0) Back\nEnter:");
+            Console.Write("STANDART CALCULATOR\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\nChoose:\n1) Enter values\n2) Output of the history of a math problem\n0) Back\nEnter:");
             numOfMenu = Console.ReadLine();
             Console.Clear();
 
@@ -63,6 +64,10 @@ internal class Program
                 case "1":
                     Console.WriteLine("Enter a math problem:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                     standartCalculator.AlgorithmStandartCalculator();
+                    break;
+                case "2":
+                    Console.WriteLine("Output of the history of a math problem:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    recordingAndOutputHistory.OutputHistoryOfStandartCalculator();
                     break;
                 case "0":
                     IsExit = true;

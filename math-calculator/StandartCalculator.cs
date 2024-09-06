@@ -1,29 +1,23 @@
-﻿using System;
-
-public class StandartCalculator
+﻿public class StandartCalculator
 {
 	//[Flags]
 
 	public void AlgorithmStandartCalculator()
 	{
 		bool	IsExit = true,
-				IsHaveResult = true,
 				IsHaveSpecialSign = false; //if we have * or /
 
 		int		countOfSteps = 1;
 
-		float xValue = .0f,
-				yValue = .0f,
-				result = .0f,
-				tempResult = 1.0f,
+		float	result = .0f,
 				bufer = 1;
 
 
-        string	sign = null,
-				yesOrNo = null,
+        string	yesOrNo = null,
 				mathProblem = null,
 				strBufer = null;
 
+        RecordingAndOutputHistory recordingAndOutputHistory = new RecordingAndOutputHistory();
 
         List<string>	arrayOfSignElements			= new List<string>();
 		List<float>		arrayOfNumberElements		= new List<float>();
@@ -31,7 +25,8 @@ public class StandartCalculator
 		List<float>		newArrayOfNumberElements	= new List<float>();
 			
         Console.Write(countOfSteps + " step)\n");
-        mathProblem = Console.ReadLine();           //And here i can remember string or hust output this string.
+		mathProblem = Console.ReadLine();
+        recordingAndOutputHistory.RecordingHistoryOfStandartCalculator(mathProblem);
 
 		//At this loop u must do try...catch construction.
         foreach (string element in mathProblem.Split(' '))
