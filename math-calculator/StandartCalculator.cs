@@ -25,9 +25,9 @@ public class StandartCalculator
 				strBufer = null;
 
 
-        List<string>	arrayOfSignElements		= new List<string>();
-		List<float>		arrayOfNumberElements	= new List<float>();
-		List<string>	newArrayOfSignElements	= new List<string>();
+        List<string>	arrayOfSignElements			= new List<string>();
+		List<float>		arrayOfNumberElements		= new List<float>();
+		List<string>	newArrayOfSignElements		= new List<string>();
 		List<float>		newArrayOfNumberElements	= new List<float>();
 			
         Console.Write(countOfSteps + " step)\n");
@@ -36,11 +36,18 @@ public class StandartCalculator
 		//At this loop u must do try...catch construction.
         foreach (string element in mathProblem.Split(' '))
 		{
+			Console.WriteLine(element);
+            //if ((element.IndexOf % 2) != 0) // here you need to do a parity check index
+            //{
             if (element == "+" || element == "-" || element == "*" || element == "/")
-            {
+			{
 				arrayOfSignElements.Add(element);
-				//---> HERE <---//
-            }
+				if (IsHaveSpecialSign == false && (element == "*" || element == "/"))
+				{
+					IsHaveSpecialSign = true;
+				}
+			}
+			//}
             else
             {
 				if (element.IndexOf("sqrt") == 0)
@@ -84,18 +91,19 @@ public class StandartCalculator
 					continue;
 				}
 
-				arrayOfNumberElements.Add(float.Parse(element));//if i want do the sqrt or factorial, then float.parse will do after this string
+				try
+				{
+					arrayOfNumberElements.Add(float.Parse(element));
+				}
+				catch
+				{
+                    Console.Clear();
+                    Console.WriteLine("Uncorrect x value! Try again.");
+                    Console.ReadKey();
+					return;
+                }
             }
         }
-
-		foreach (string element in arrayOfSignElements)
-		{
-			if (element == "*" || element == "/")//maybe move this condition in up (---> HERE <---), only without break//
-			{
-                IsHaveSpecialSign = true;
-				break;
-            }
-		}
 
 		if (IsHaveSpecialSign)
 		{
@@ -113,18 +121,18 @@ public class StandartCalculator
                                     newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] = newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] * arrayOfNumberElements[i + 1];
                                     break;
                                 case "/":
-                                    if (arrayOfNumberElements[i + 1] != .0f)
-                                    {
-                                        newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] = newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] / arrayOfNumberElements[i + 1];
-                                    }
-                                    else
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine("You can't divide by zero!");
-                                        Console.ReadKey();
-                                        //Come up with the end for divide by zero
-                                    }
-                                    break;
+									if (arrayOfNumberElements[i + 1] != .0f)
+									{
+										newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] = newArrayOfNumberElements[newArrayOfNumberElements.Count - 1] / arrayOfNumberElements[i + 1];
+									}
+									else
+									{
+										Console.Clear();
+										Console.WriteLine("You can't divide by zero!");
+										Console.ReadKey();
+										return;
+									}
+									break;
                             }
                         }
 						else
@@ -135,18 +143,18 @@ public class StandartCalculator
                                     newArrayOfNumberElements.Add(arrayOfNumberElements[i] * arrayOfNumberElements[i + 1]);
                                     break;
                                 case "/":
-                                    if (arrayOfNumberElements[i + 1] != .0f)
-                                    {
-                                        newArrayOfNumberElements.Add(arrayOfNumberElements[i] / arrayOfNumberElements[i + 1]);
-                                    }
-                                    else
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine("You can't divide by zero!");
-                                        Console.ReadKey();
-                                        //Come up with the end for divide by zero
-                                    }
-                                    break;
+									if (arrayOfNumberElements[i + 1] != .0f)
+									{
+										newArrayOfNumberElements.Add(arrayOfNumberElements[i] / arrayOfNumberElements[i + 1]);
+									}
+									else
+									{
+										Console.Clear();
+										Console.WriteLine("You can't divide by zero!");
+										Console.ReadKey();
+										return;
+									}
+									break;
                             }
                         }
 					}
@@ -167,7 +175,7 @@ public class StandartCalculator
 									Console.Clear();
 									Console.WriteLine("You can't divide by zero!");
 									Console.ReadKey();
-									//Come up with the end for divide by zero
+									return;
 								}
 								break;
 						}
@@ -206,97 +214,9 @@ public class StandartCalculator
 		Console.ReadKey();
 		return;
 
-        //Old version
-        Console.Write(countOfSteps + " step)\nx = ");
-		try
-		{
-			xValue = float.Parse(Console.ReadLine());
-		}
-		catch
-		{
-			Console.Clear();
-			Console.WriteLine("Uncorrect x value! Try again.");
-			Console.ReadKey();
-			return;
-		}
-
-		while (IsExit)
-		{
-			yesOrNo = null;
-
-            Console.Write("Sign: ");
-			sign = Console.ReadLine();
-
-			Console.Write("y = ");
-			try
-			{
-				yValue = float.Parse(Console.ReadLine());
-			}
-			catch
-			{
-				Console.Clear();
-				Console.WriteLine("Uncorrect y value! Try again.");
-				Console.ReadKey();
-				return;
-			}
-
-			//Add round for result value! (4.2 - 6.4 = -2.20001)
-			switch (sign)
-			{
-				case "+":
-					result = xValue + yValue;
-					break;
-				case "-":
-					result = xValue - yValue;
-					break;
-				case "*":
-					result = xValue * yValue;
-					break;
-				case "/":
-					if (yValue == 0.0f)
-					{
-						IsHaveResult = false;
-						Console.Clear();
-						Console.WriteLine("You can't divide by zero! Try again.");
-					}
-					else
-					{
-						result = xValue / yValue;
-					}
-					break;
-				default:
-					IsHaveResult = false;
-					Console.Clear();
-					Console.WriteLine("Please, enter correct sign.");
-					break;
-			}
-
-			if (IsHaveResult) Console.WriteLine("Result " + xValue + " " + sign + " " + yValue + " = " + result);
-
-			Console.WriteLine("Continue with the given value or exit? (y/n)");
-			while (yesOrNo != "y" && yesOrNo != "n")
-			{
-				yesOrNo = Console.ReadLine();
-
-				if (yesOrNo == "y")
-				{
-					IsExit = true;
-					xValue = result;
-					//Console.Clear();
-					countOfSteps++;
-                    Console.WriteLine("\n" + countOfSteps + " step)\nx = " + xValue);
-				}
-				else if (yesOrNo == "n")
-				{
-					IsExit = false;
-					Console.Clear();
-				}
-				else
-				{
-					Console.WriteLine("\nEnter y or n.");
-				}
-			}
-		}
+        //Exit from algorithm: yes/no
+        //Inccorrect sign
+        //Add round for result value!(4.2 - 6.4 = -2.20001)
     }
 
 	private float PlusAndMinosOperation(List<string> arrayOfSignElements, List<float> arrayOfNumberElements)
