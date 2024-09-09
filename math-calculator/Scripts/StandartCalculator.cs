@@ -1,7 +1,5 @@
 ﻿public class StandartCalculator
 {
-	//[Flags]
-
 	public void AlgorithmStandartCalculator()
 	{
 		bool	IsExit = true,
@@ -26,12 +24,12 @@
 			
         Console.Write(countOfSteps + " step)\n");
 		mathProblem = Console.ReadLine();
-        recordingAndOutputHistory.RecordingHistoryOfStandartCalculator(mathProblem);
+
+        //recordingAndOutputHistory.RecordingHistoryOfStandartCalculator(DateTime.Now + ": " + mathProblem);
 
 		//At this loop u must do try...catch construction.
         foreach (string element in mathProblem.Split(' '))
 		{
-			Console.WriteLine(element);
             //if ((element.IndexOf % 2) != 0) // here you need to do a parity check index
             //{
             if (element == "+" || element == "-" || element == "*" || element == "/")
@@ -205,6 +203,7 @@
 			result = PlusAndMinosOperation(arrayOfSignElements, arrayOfNumberElements);
         }
 
+        recordingAndOutputHistory.RecordingHistoryOfStandartCalculator(DateTime.Now + ": " + mathProblem + " = " + result + "\n");
 		Console.WriteLine("Result: " + result);
 		Console.ReadKey();
 		return;

@@ -1,15 +1,18 @@
-﻿public class RecordingAndOutputHistory
+﻿using System.IO;
+using System.Text;
+
+public class RecordingAndOutputHistory
 {
-    private const string PathOfHistoryOfStandartCalculator = "History/HistoryOfStandartCalculator.txt";
+    private const string PathOfHistoryOfStandartCalculator = "../../../History/HistoryOfStandartCalculator.txt";
 
     public void RecordingHistoryOfStandartCalculator(string mathProblem)
     {
-        FileInfo fileOfHistoryOfStandartCalculator = new FileInfo(PathOfHistoryOfStandartCalculator);
-
-        if (!fileOfHistoryOfStandartCalculator.Exists)
-        {
-            fileOfHistoryOfStandartCalculator.Create();
-        }
+        // create new file (what is it? using?)
+        //using (FileStream fs = fileInfo.Create())
+        //{
+        //    byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
+        //    fs.Write(info, 0, info.Length);
+        //}
 
         File.AppendAllTextAsync(PathOfHistoryOfStandartCalculator, mathProblem);
     }
@@ -21,8 +24,12 @@
         if (File.Exists(PathOfHistoryOfStandartCalculator))
         {
             allFileString = File.ReadAllLines(PathOfHistoryOfStandartCalculator);
+
             Console.Clear();
-            Console.WriteLine(allFileString);
+            foreach (string element in allFileString)
+            {
+                Console.WriteLine(element);
+            }
             Console.ReadKey();
         }
         else
