@@ -9,7 +9,4 @@ public class DataStructureAndAlgorithmsClass
         messageInConsole();
         Console.ReadKey();
     }
-
-
-    void TestMethod(string strTemp) => Console.WriteLine(strTemp);
 }

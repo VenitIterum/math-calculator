@@ -3,9 +3,7 @@ using System.Text;
 
 public class RecordingAndOutputHistory
 {
-    private const string PathOfHistoryOfStandartCalculator = "../../../History/HistoryOfStandartCalculator.txt";
-
-    public void RecordingHistoryOfStandartCalculator(string mathProblem)
+    public void RecordingHistory(string mathProblem, string path)
     {
         // create new file (what is it? using?)
         //using (FileStream fs = fileInfo.Create())
@@ -14,16 +12,16 @@ public class RecordingAndOutputHistory
         //    fs.Write(info, 0, info.Length);
         //}
 
-        File.AppendAllTextAsync(PathOfHistoryOfStandartCalculator, mathProblem);
+        File.AppendAllTextAsync(path, mathProblem);
     }
 
-    public void OutputHistoryOfStandartCalculator()
+    public void OutputHistory(string path)
     {
         string[] allFileString;
 
-        if (File.Exists(PathOfHistoryOfStandartCalculator))
+        if (File.Exists(path))
         {
-            allFileString = File.ReadAllLines(PathOfHistoryOfStandartCalculator);
+            allFileString = File.ReadAllLines(path);
 
             Console.Clear();
             foreach (string element in allFileString)
@@ -35,7 +33,7 @@ public class RecordingAndOutputHistory
         else
         {
             Console.Clear();
-            Console.WriteLine($"File {PathOfHistoryOfStandartCalculator} doesn't exist!");
+            Console.WriteLine($"File {path} doesn't exist!");
             Console.ReadKey();
         }
     }
