@@ -5,17 +5,12 @@ namespace Algorithms
 {
 	public class LogarithmicAlgorithm
 	{
-		public void BinarySearch()
+		public void StartLogarithmicAlgorithm()
 		{
             int key     = 0;
-            int low     = 0;
-            int mid     = 0;
-            int high    = 0;
-            int numberOfIterations = 0;
 
             char arrayYesOrNo = ' ';
 
-            bool IsKeyFound = false;
             bool IsGenerateArray = false;
 
             string strNumbers = null;
@@ -52,12 +47,8 @@ namespace Algorithms
 
             if (IsGenerateArray)
             {
-                for (int i = 0; i < 100; i++)
-                {
-                    numbers.Add(random.Next(1, 100));
-                }
-
-                OutPutArray(numbers, "Generated array");
+                numbers = ArrayOperations.GenerateArray();
+                ArrayOperations.OutPutArray(numbers, "Generated array");
             }
             else
             {
@@ -74,7 +65,6 @@ namespace Algorithms
             try
             {
                 key = Convert.ToInt32(Console.ReadLine());
-
             }
             catch
             {
@@ -84,101 +74,15 @@ namespace Algorithms
                 return;
             }
 
-            LinearSearch(key, numbers, "before sorting");
+            ArrayOperations.LinearSearch(key, numbers, "before sorting");
 
-            numbers = SortingArray(numbers);
+            numbers = QuadraticAlgorithm.BubbleSort(numbers);
+            ArrayOperations.OutPutArray(numbers, "Bubble sort");
 
-            LinearSearch(key, numbers, "after sorting");
+            ArrayOperations.LinearSearch(key, numbers, "after sorting");
 
-            low = 0;
-            high = numbers.Count - 1;
-
-            while (low <= high)
-            {
-                numberOfIterations++;
-                mid = low + (high - low) / 2;
-
-                if (key < numbers[mid]) high = mid - 1;
-                else if (key > numbers[mid]) low = mid + 1;
-                else
-                {
-                    IsKeyFound = true;
-                    break;
-                }
-            }
-
-            Console.WriteLine("\nBinary search:");
-            if (IsKeyFound)
-            {
-                Console.WriteLine($"Key = {mid + 1} (count of iterations = {numberOfIterations})");
-                Console.ReadKey();
-            }
-            else
-            {
-                Console.WriteLine($"Key not found! (count of iterations = {numberOfIterations})");
-                Console.ReadKey();
-            }
-        }
-
-        private List<int> LinearSearch(int key, List<int> numbers, string textAfterBegore)
-        {
-            int numberOfIterations = 0;
-
-            bool IsKeyFound = false;
-
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                numberOfIterations++;
-
-                if (key == numbers[i])
-                {
-                    IsKeyFound = true;
-                    break;
-                }
-            }
-
-            Console.WriteLine($"\nLinear search {textAfterBegore}:");
-            if (IsKeyFound)
-            {
-                Console.WriteLine($"Key = {numberOfIterations} (count of iterations = {numberOfIterations})");
-            }
-            else
-            {
-                Console.WriteLine($"Key not found! (count of iterations = {numberOfIterations})");
-            }
-
-            return numbers;
-        }
-
-        private List<int> SortingArray(List<int> numbers)
-        {
-            int buferValue = 0;
-
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                for (int j = i; j < numbers.Count; j++)
-                {
-                    if (numbers[i] > numbers[j])
-                    {
-                        buferValue = numbers[j];
-                        numbers[j] = numbers[i];
-                        numbers[i] = buferValue;
-                    }
-                }
-            }
-
-            OutPutArray(numbers, "Sorting array:");
-            return numbers;
-        }
-
-        private void OutPutArray(List<int> numbers, string text)
-        {
-            Console.WriteLine($"\n{text}:");
-            foreach (int element in numbers)
-            {
-                Console.Write($"{element} ");
-            }
-            Console.Write($"\n");
+            ArrayOperations.BinarySearch(key, numbers);
+            Console.ReadKey();
         }
     }
 }

@@ -110,8 +110,10 @@ internal class Program
 
     private void MenuThirdAlgorithms()
     {
-        ConstantAlgorithm constantAlgorithm = new ConstantAlgorithm();
-        LogarithmicAlgorithm logarithmicAlgorithm = new LogarithmicAlgorithm();
+        ConstantAlgorithm constantAlgorithm         = new ConstantAlgorithm();
+        LogarithmicAlgorithm logarithmicAlgorithm   = new LogarithmicAlgorithm();
+        LinearAlgorithm linearAlgorithm             = new LinearAlgorithm();
+        QuadraticAlgorithm quadraticAlgorithm       = new QuadraticAlgorithm();
 
         bool IsExit = false;
         var numOfMenu = "0";
@@ -130,20 +132,20 @@ internal class Program
                     constantAlgorithm.StartConstantAlgorithm();
                     break;
                 case "2":
-                    Console.WriteLine("Logarithmic:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    logarithmicAlgorithm.BinarySearch();
+                    Console.WriteLine("Binary search:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    logarithmicAlgorithm.StartLogarithmicAlgorithm();
                     break;
                 case "3":
-                    Console.WriteLine("Linear:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-
+                    Console.WriteLine("Factorial:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    linearAlgorithm.Factorial();
                     break;
                 case "4":
                     Console.WriteLine("Linear-logarithmic:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-
+                    
                     break;
                 case "5":
                     Console.WriteLine("Quadratic:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-
+                    quadraticAlgorithm.BubbleSort();
                     break;
                 case "6":
                     Console.WriteLine("Cubic:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
