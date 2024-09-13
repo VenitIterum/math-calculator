@@ -35,12 +35,6 @@ internal class Program
             }
         }
 
-        Console.WriteLine("EXIT.");
-        Thread.Sleep(delayBeforeExit);
-        Console.Clear();
-        Console.WriteLine("EXIT..");
-        Thread.Sleep(delayBeforeExit);
-        Console.Clear();
         Console.WriteLine("EXIT...");
         Thread.Sleep(delayBeforeExit);
     }
@@ -137,7 +131,7 @@ internal class Program
                     break;
                 case "2":
                     Console.WriteLine("Logarithmic:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-
+                    logarithmicAlgorithm.BinarySearch();
                     break;
                 case "3":
                     Console.WriteLine("Linear:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
