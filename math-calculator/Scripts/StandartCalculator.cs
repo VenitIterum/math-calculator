@@ -2,8 +2,6 @@
 {
     public void AlgorithmStandartCalculator()
 	{
-
-
 		bool	IsExit = true,
 				IsHaveSpecialSign = false; //if we have * or /
 
@@ -30,7 +28,7 @@
 		//At this loop u must do try...catch construction.
         foreach (string element in mathProblem.Split(' '))
 		{
-            //if ((element.IndexOf % 2) != 0) // here you need to do a parity check index
+            //if ((element.IndexOf % 2) != 0) // here you need to do a parity check index (It's for checks inccorrect sign?)
             //{
             if (element == "+" || element == "-" || element == "*" || element == "/")
 			{
