@@ -20,29 +20,32 @@ namespace Algorithms
             Random random = new Random();
 
             Console.WriteLine("Generate an array for you? (y/n)");
-            try
+            while (arrayYesOrNo != 'y' && arrayYesOrNo != 'n')
             {
-                arrayYesOrNo = Convert.ToChar(Console.ReadLine());
-            }
-            catch
-            {
-                Console.Clear();
-                Console.WriteLine("Uncorrected value for menu! Please, enter y/n!");
-                Console.ReadKey();
-                return;
-            }
+                try
+                {
+                    arrayYesOrNo = Convert.ToChar(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.Clear();
+                    Console.WriteLine("Uncorrected value for menu! Please, enter y/n!");
+                    Console.ReadKey();
+                    return;
+                }
 
-            switch (arrayYesOrNo)
-            {
-                case 'y':
-                    IsGenerateArray = true;
-                    break;
-                case 'n':
-                    IsGenerateArray = false;
-                    break;
-                default:
-                    Console.WriteLine("Enter uncorrected value! Please, enter y/n!");
-                    break;
+                switch (arrayYesOrNo)
+                {
+                    case 'y':
+                        IsGenerateArray = true;
+                        break;
+                    case 'n':
+                        IsGenerateArray = false;
+                        break;
+                    default:
+                        Console.WriteLine("Enter uncorrected value! Please, enter y/n!");
+                        break;
+                }
             }
 
             if (IsGenerateArray)
