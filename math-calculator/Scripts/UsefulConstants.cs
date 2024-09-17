@@ -8,6 +8,7 @@
     public class PathConstants
     {
         public const string PathOfHistoryOfStandartCalculator = "../../../History/HistoryOfStandartCalculator.txt";
+        public const string PathDirectoryOfHistoryOfStandartCalculator = "../../../History";
     }
 }
 

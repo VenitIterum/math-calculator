@@ -12,6 +12,11 @@ public class RecordingAndOutputHistory
         //    fs.Write(info, 0, info.Length);
         //}
 
+        if (!Directory.Exists(UsefulConstants.PathConstants.PathDirectoryOfHistoryOfStandartCalculator))
+        {
+            Directory.CreateDirectory(UsefulConstants.PathConstants.PathDirectoryOfHistoryOfStandartCalculator);
+        }
+
         File.AppendAllTextAsync(path, mathProblem);
     }
 
