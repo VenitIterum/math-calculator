@@ -1,7 +1,9 @@
 ﻿public class StandartCalculator
 {
-	public void AlgorithmStandartCalculator()
+    public void AlgorithmStandartCalculator()
 	{
+
+
 		bool	IsExit = true,
 				IsHaveSpecialSign = false; //if we have * or /
 
@@ -24,8 +26,6 @@
 			
         Console.Write(countOfSteps + " step)\n");
 		mathProblem = Console.ReadLine();
-
-        //recordingAndOutputHistory.RecordingHistoryOfStandartCalculator(DateTime.Now + ": " + mathProblem);
 
 		//At this loop u must do try...catch construction.
         foreach (string element in mathProblem.Split(' '))
@@ -203,7 +203,7 @@
 			result = PlusAndMinosOperation(arrayOfSignElements, arrayOfNumberElements);
         }
 
-        recordingAndOutputHistory.RecordingHistoryOfStandartCalculator(DateTime.Now + ": " + mathProblem + " = " + result + "\n");
+        recordingAndOutputHistory.RecordingHistory(DateTime.Now + ": " + mathProblem + " = " + result + "\n", UsefulConstants.PathConstants.PathOfHistoryOfStandartCalculator);
 		Console.WriteLine("Result: " + result);
 		Console.ReadKey();
 		return;
