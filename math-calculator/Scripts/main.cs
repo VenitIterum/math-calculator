@@ -115,6 +115,7 @@ internal class Program
         LinearAlgorithm linearAlgorithm             = new LinearAlgorithm();
         QuadraticAlgorithm quadraticAlgorithm       = new QuadraticAlgorithm();
         Linear_logarithmicAlgorithm linear_LA       = new Linear_logarithmicAlgorithm();
+        CubicAlgorithm cubicAlgorithm               = new CubicAlgorithm();
 
         bool IsExit = false;
         var numOfMenu = "0";
@@ -149,8 +150,8 @@ internal class Program
                     quadraticAlgorithm.BubbleSort();
                     break;
                 case "6":
-                    Console.WriteLine("Cubic:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-
+                    Console.WriteLine("Matrix 3x3x3:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    cubicAlgorithm.ThreeDimensionalMatrixOutPut();
                     break;
                 case "0":
                     IsExit = true;
