@@ -114,6 +114,7 @@ internal class Program
         LogarithmicAlgorithm logarithmicAlgorithm   = new LogarithmicAlgorithm();
         LinearAlgorithm linearAlgorithm             = new LinearAlgorithm();
         QuadraticAlgorithm quadraticAlgorithm       = new QuadraticAlgorithm();
+        Linear_logarithmicAlgorithm linear_LA       = new Linear_logarithmicAlgorithm();
 
         bool IsExit = false;
         var numOfMenu = "0";
@@ -140,8 +141,8 @@ internal class Program
                     linearAlgorithm.Factorial();
                     break;
                 case "4":
-                    Console.WriteLine("Linear-logarithmic:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    
+                    Console.WriteLine("MergeSort:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    linear_LA.MergeSort();
                     break;
                 case "5":
                     Console.WriteLine("Quadratic:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");

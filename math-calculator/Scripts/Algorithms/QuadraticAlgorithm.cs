@@ -25,29 +25,9 @@ namespace Algorithms
             numbers = ArrayOperations.GenerateArray(lenghtArray);
             ArrayOperations.OutPutArray(numbers, "Random array");
 
-            numbers = BubbleSort(numbers);
+            numbers = ArrayOperations.BubbleSort(numbers);
             ArrayOperations.OutPutArray(numbers, "Bubble sort");
             Console.ReadKey();
-        }
-
-        public static List<int> BubbleSort(List<int> numbers)
-		{
-            int buferValue = 0;
-
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                for (int j = i; j < numbers.Count; j++)
-                {
-                    if (numbers[i] > numbers[j])
-                    {
-                        buferValue = numbers[j];
-                        numbers[j] = numbers[i];
-                        numbers[i] = buferValue;
-                    }
-                }
-            }
-
-            return numbers;
         }
 	}
 }

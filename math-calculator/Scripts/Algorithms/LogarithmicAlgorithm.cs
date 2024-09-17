@@ -76,7 +76,7 @@ namespace Algorithms
 
             ArrayOperations.LinearSearch(key, numbers, "before sorting");
 
-            numbers = QuadraticAlgorithm.BubbleSort(numbers);
+            numbers = ArrayOperations.BubbleSort(numbers);
             ArrayOperations.OutPutArray(numbers, "Bubble sort");
 
             ArrayOperations.LinearSearch(key, numbers, "after sorting");
