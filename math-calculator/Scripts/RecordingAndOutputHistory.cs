@@ -3,8 +3,9 @@ using System.Text;
 
 public class RecordingAndOutputHistory
 {
-    public void RecordingHistory(string mathProblem, string path)
+    public static void RecordingHistory(string mathProblem, string path)
     {
+        // TODO Make sense of this pile of code
         // create new file (what is it? using?)
         //using (FileStream fs = fileInfo.Create())
         //{
@@ -20,7 +21,7 @@ public class RecordingAndOutputHistory
         File.AppendAllTextAsync(path, mathProblem);
     }
 
-    public void OutputHistory(string path)
+    public static void OutputHistory(string path)
     {
         string[] allFileString;
 

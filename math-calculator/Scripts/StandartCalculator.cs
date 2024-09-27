@@ -15,8 +15,6 @@
 				mathProblem = null,
 				strBufer = null;
 
-        RecordingAndOutputHistory recordingAndOutputHistory = new RecordingAndOutputHistory();
-
         List<string>	arrayOfSignElements			= new List<string>();
 		List<float>		arrayOfNumberElements		= new List<float>();
 		List<string>	newArrayOfSignElements		= new List<string>();
@@ -25,9 +23,10 @@
         Console.Write(countOfSteps + " step)\n");
 		mathProblem = Console.ReadLine();
 
-		//At this loop u must do try...catch construction.
+		// TODO At this loop u must do try...catch construction.
         foreach (string element in mathProblem.Split(' '))
 		{
+            // TODO Inccorrect sign
             //if ((element.IndexOf % 2) != 0) // here you need to do a parity check index (It's for checks inccorrect sign?)
             //{
             if (element == "+" || element == "-" || element == "*" || element == "/")
@@ -66,7 +65,6 @@
                     continue;
                 }
 
-				//Lazy ass! Rewrite this.
 				if (element.LastIndexOf("!") > 0)
 				{
                     strBufer = element.Substring(0, element.Length - 1);
@@ -201,14 +199,13 @@
 			result = PlusAndMinosOperation(arrayOfSignElements, arrayOfNumberElements);
         }
 
-        recordingAndOutputHistory.RecordingHistory(DateTime.Now + ": " + mathProblem + " = " + result + "\n", UsefulConstants.PathConstants.PathOfHistoryOfStandartCalculator);
+        // TODO Add round for result value!(4.2 - 6.4 = -2.20001)
+        RecordingAndOutputHistory.RecordingHistory(DateTime.Now + ": " + mathProblem + " = " + result + "\n", UsefulConstants.PathConstants.PathOfHistoryOfStandartCalculator);
 		Console.WriteLine("Result: " + result);
 		Console.ReadKey();
 		return;
 
-        //Exit from algorithm: yes/no
-        //Inccorrect sign
-        //Add round for result value!(4.2 - 6.4 = -2.20001)
+        // TODO Exit from algorithm: yes/no
     }
 
 	private float PlusAndMinosOperation(List<string> arrayOfSignElements, List<float> arrayOfNumberElements)

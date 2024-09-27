@@ -1,5 +1,6 @@
 ﻿using System;
 using Algorithms;
+using DataStructure;
 
 internal class Program
 {
@@ -42,7 +43,6 @@ internal class Program
     private void MenuFirstStandartCalculator()
     {
         StandartCalculator standartCalculator = new StandartCalculator();
-        RecordingAndOutputHistory recordingAndOutputHistory = new RecordingAndOutputHistory();
 
         bool IsExit = false;
         var numOfMenu = "0";
@@ -62,7 +62,7 @@ internal class Program
                     break;
                 case "2":
                     Console.WriteLine("Output of the history of a math problem:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    recordingAndOutputHistory.OutputHistory(UsefulConstants.PathConstants.PathOfHistoryOfStandartCalculator);
+                    RecordingAndOutputHistory.OutputHistory(UsefulConstants.PathConstants.PathOfHistoryOfStandartCalculator);
                     break;
                 case "0":
                     IsExit = true;
@@ -166,21 +166,29 @@ internal class Program
 
     private void MenuThirdDataStructures()
     {
+        MyLinkedList<int> intLinkedList = new MyLinkedList<int>(1, "Dima");
+        MyLinkedList<string> stringLinkedList = new MyLinkedList<string>("one", "Dima");
+
+        MyLinkedList<int>.code = 404;
+        MyLinkedList<string>.code = "four hundred four";
+
         bool IsExit = false;
         var numOfMenu = "0";
 
         while (!IsExit)
         {
             Console.Clear();
-            Console.Write("DATA STRUCTURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\nChoose:\n1) There is nothing here right now!\n0) Back\nEnter:");
+            Console.Write("DATA STRUCTURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\nChoose:\n1) Linked list\n0) Back\nEnter:");
             numOfMenu = Console.ReadLine();
             Console.Clear();
 
             switch (numOfMenu)
             {
                 case "1":
-                    Console.WriteLine("Nothing:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-                    //dataStructureAndAlgorithmsClass.InternalMethod();
+                    Console.WriteLine("Linked list:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    Console.Clear();
+                    Console.WriteLine($"ID: {MyLinkedList<int>.code}, Name: {MyLinkedList<string>.code}");
+                    Console.ReadKey();
                     break;
                 case "0":
                     IsExit = true;
@@ -193,7 +201,7 @@ internal class Program
         }
     }
 
-    //I don't undestand. WHY the main method of c# procject must be static?
+    // TODO I don't undestand. WHY the main method of c# procject must be static?
     private static void Main(string[] args)
     {
         Program program = new Program();
