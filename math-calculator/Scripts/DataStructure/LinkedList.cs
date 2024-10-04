@@ -1,20 +1,20 @@
 ﻿using System;
+using System.Collections;
+
 namespace DataStructure
 {
-	public class MyLinkedList<T>
-	{
-		Node<T>? head;
-		Node<T>? tail;
-		int count;
+	public class LinkedList<T>
+    {
+		private Node<T>? head;
+		private Node<T>? tail;
+		private int count = 0;
 
 		public void Add(T data)
 		{
 			Node<T> node = new Node<T>(data);
 
-			if (head == null)
-				head = node;
-			else
-				tail!.Next = node;
+			if (head == null) head = node;
+			else tail!.Next = node;
 			tail = node;
 
 			count++;
@@ -33,26 +33,26 @@ namespace DataStructure
 					{
 						previous.Next = current.Next;
 
-						if (current.Next == null)
-							tail = previous;
+						if (current.Next == null) tail = previous;
 					}
 					else
 					{
 						head = head?.Next;
-
-						if (head == null)
-							tail = null;
+						if (head == null) tail = null;
 					}
+
 					count--;
 					return true;
 				}
+
 				previous = current;
 				current = current.Next;
 			}
+
 			return false;
 		}
 
-		public int Count{ get { return count; } }
+		public int Count { get { return count; } }
 		public bool IsEmpty { get { return count == 0; } }
 
 		public void Clear()
@@ -62,13 +62,35 @@ namespace DataStructure
 			count = 0;
 		}
 
+		public bool Contains(T data)
+		{
+			Node<T>? current = head;
 
-	}
+			while (current != null && current.Data != null)
+			{
+				if (current.Data.Equals(data)) return true;
+				current = current.Next;
+			}
 
-	public class Node<T>
+			return false;
+		}
+
+		public void AddFirst(T data)
+		{
+			Node<T> node = new Node<T>(data);
+
+			node.Next = head;
+			head = node;
+			if (count == 0) tail = head;
+
+			count++;
+		}
+    }
+
+	internal class Node<T>
 	{
-		public T Data { get; set; }
-		public Node<T> Next { get; set; }
+		public T Data;
+		public Node<T> Next;
 
 		public Node(T data)
 		{

@@ -166,11 +166,7 @@ internal class Program
 
     private void MenuThirdDataStructures()
     {
-        MyLinkedList<int> intLinkedList = new MyLinkedList<int>(1, "Dima");
-        MyLinkedList<string> stringLinkedList = new MyLinkedList<string>("one", "Dima");
-
-        MyLinkedList<int>.code = 404;
-        MyLinkedList<string>.code = "four hundred four";
+        DataStructure.LinkedList<int> intList = new DataStructure.LinkedList<int>();
 
         bool IsExit = false;
         var numOfMenu = "0";
@@ -185,9 +181,75 @@ internal class Program
             switch (numOfMenu)
             {
                 case "1":
-                    Console.WriteLine("Linked list:\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                    LinkedListMenu();
+                    break;
+                case "0":
+                    IsExit = true;
+                    break;
+                default:
+                    Console.WriteLine("You enter not correct nuber of menu!\nPlease, try again.");
+                    Console.ReadKey();
+                    break;
+            }
+        }
+    }
+
+    private void LinkedListMenu()
+    {
+        DataStructure.LinkedList<int> intList = new DataStructure.LinkedList<int>();
+
+        bool IsExit = false;
+        var numOfMenu = "0";
+
+        while (!IsExit)
+        {
+            Console.Clear();
+            Console.Write("LINKED LIST\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\nChoose:\n1) Add element in end\n2) Add first element\n3) Remove element\n4) Search element\n5) How many element\n6) Is empty list?\n7) Clear list\n0) Back\nEnter:");
+            numOfMenu = Console.ReadLine();
+            Console.Clear();
+
+            switch (numOfMenu)
+            {
+                case "1":
                     Console.Clear();
-                    Console.WriteLine($"ID: {MyLinkedList<int>.code}, Name: {MyLinkedList<string>.code}");
+                    Console.WriteLine("Enter integer value:");
+                    intList.Add(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case "2":
+                    Console.Clear();
+                    Console.WriteLine("Enter integer value (first element):");
+                    intList.AddFirst(Convert.ToInt32(Console.ReadLine()));
+                    break;
+                case "3":
+                    Console.Clear();
+                    Console.WriteLine("Enter integer value for remove:");
+                    if (intList.Remove(Convert.ToInt32(Console.ReadLine())))
+                        Console.WriteLine("The object is deleted!");
+                    else
+                        Console.WriteLine("The object is NOT deleted! Such an object does not exist!");
+                        
+                    Console.ReadKey();
+                    break;
+                case "4":
+                    Console.Clear();
+                    Console.WriteLine("Enter integer value for search:");
+                    Console.WriteLine($"Contain? [{intList.Contains(Convert.ToInt32(Console.ReadLine()))}]");
+                    Console.ReadKey();
+                    break;
+                case "5":
+                    Console.Clear();
+                    Console.WriteLine($"How many elements? [{intList.Count}]");
+                    Console.ReadKey();
+                    break;
+                case "6":
+                    Console.Clear();
+                    Console.WriteLine($"Is list empty? [{intList.IsEmpty}]");
+                    Console.ReadKey();
+                    break;
+                case "7":
+                    Console.Clear();
+                    intList.Clear();
+                    Console.WriteLine($"List is clear!");
                     Console.ReadKey();
                     break;
                 case "0":
