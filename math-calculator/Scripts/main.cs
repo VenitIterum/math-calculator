@@ -204,7 +204,7 @@ internal class Program
         while (!IsExit)
         {
             Console.Clear();
-            Console.Write("LINKED LIST\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\nChoose:\n1) Add element in end\n2) Add first element\n3) Remove element\n4) Search element\n5) How many element\n6) Is empty list?\n7) Clear list\n0) Back\nEnter:");
+            Console.Write("LINKED LIST\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\nChoose:\n1) Add element in end\n2) Add first element\n3) Remove element\n4) Search element\n5) How many element\n6) Is empty list?\n7) Clear list\n8) Output list\n0) Back\nEnter:");
             numOfMenu = Console.ReadLine();
             Console.Clear();
 
@@ -250,6 +250,15 @@ internal class Program
                     Console.Clear();
                     intList.Clear();
                     Console.WriteLine($"List is clear!");
+                    Console.ReadKey();
+                    break;
+                case "8":
+                    Console.Clear();
+                    Console.WriteLine($"Show list [{intList}]:");
+                    foreach (int element in intList)
+                    {
+                        Console.Write($"{element}, ");
+                    }
                     Console.ReadKey();
                     break;
                 case "0":

@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace DataStructure
 {
-	public class LinkedList<T>
+	public class LinkedList<T> : IEnumerable
     {
 		private Node<T>? head;
 		private Node<T>? tail;
@@ -85,12 +85,23 @@ namespace DataStructure
 
 			count++;
 		}
+
+		public IEnumerator GetEnumerator()
+		{
+			Node<T>? current = head;
+
+			while (current != null)
+			{
+				yield return current.Data;
+				current = current.Next;
+			}
+		}
     }
 
 	internal class Node<T>
 	{
-		public T Data;
-		public Node<T> Next;
+		public T Data { get; set; }
+		public Node<T> Next { get; set; }
 
 		public Node(T data)
 		{
